@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./backend
+    container_name: ajio-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped
+  frontend:
+    build: ./frontend
+    container_name: ajio-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
